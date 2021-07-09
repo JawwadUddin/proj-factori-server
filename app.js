@@ -73,16 +73,16 @@ app.patch('/journalentries', (req, res) => {
     // console.log(req.body)
     let clicked_id = req.body.clicked_id;
     // console.log(clicked_id)
-    let id = clicked_id[0];
+    let id = clicked_id.replace(clicked_id[clicked_id.length-1], "");
     const journalentries = readdata();
     const entry = journalentries.filter( e => e.id == parseInt(id))[0];
-    console.log(entry)
+    // console.log(entry)
     let index;
-    if (clicked_id[1] === "a") {
+    if (clicked_id[clicked_id.length-1] === "a") {
         index = 0;
-    } else if (clicked_id[1] === "b") {
+    } else if (clicked_id[clicked_id.length-1] === "b") {
         index = 1;
-    } else if (clicked_id[1] === "c") {
+    } else if (clicked_id[clicked_id.length-1] === "c") {
         index = 2;
     }
     res.json(journalentries)
